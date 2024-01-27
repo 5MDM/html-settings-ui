@@ -3,17 +3,25 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.ts",
-  "type" : "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc && node esbuild.mjs",
+    "buildTypescript": "tsc",
+    "esbuild": "node esbuild.mjs",
+    "buildDocs": "typedoc"
   },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "node-fetch": "^3.3.1"
-  },
+  "files": [
+    "package.json",
+    "LICENSE",
+    "README.md",
+    "./dist/**"
+  ],
+  "author": "5mdm",
+  "license": "MIT",
   "devDependencies": {
-    "@types/node": "^20.4.1",
-    "tsx": "^3.12.7"
+    "@types/node": "^20.11.7",
+    "esbuild": "^0.19.12",
+    "tsx": "^3.12.7",
+    "typedoc": "^0.25.7",
+    "typescript": "^5.3.3"
   }
 }
