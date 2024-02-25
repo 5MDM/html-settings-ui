@@ -3,3 +3,4 @@ node_modules/
 .upm/
 .local/
 pnpm-lock.yaml
+index.html

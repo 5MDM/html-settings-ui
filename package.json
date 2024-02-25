@@ -1,13 +1,15 @@
 {
-  "name": "nodejs-typescript",
+  "name": "html-settings-ui",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.ts",
+  "description": "A package that creates settings using form UI. WARNING: This is still in development. Do not use in production",
+  "main": "./dist/index.js",
+  "browser": "./dist/browser.js",
   "scripts": {
     "build": "tsc && node esbuild.mjs",
     "buildTypescript": "tsc",
     "esbuild": "node esbuild.mjs",
-    "buildDocs": "typedoc"
+    "buildDocs": "typedoc",
+    "dev": "vite --host"
   },
   "files": [
     "package.json",
@@ -22,6 +24,10 @@
     "esbuild": "^0.19.12",
     "tsx": "^3.12.7",
     "typedoc": "^0.25.7",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "vite-plugin-checker": "^0.6.2"
+  },
+  "dependencies": {
+    "vite": "^5.1.3"
   }
 }
