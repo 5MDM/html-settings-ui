@@ -27,6 +27,13 @@ declare class BaseSetting {
 interface ToggleSettingOpts extends BaseSettingOpts {
     isToggled?: boolean;
 }
+/**
+ * Represents a function that is passed to the component setter's parameter
+ * @callback ElFunction
+ * @param {any} e - The event object
+ * @param {HTMLElement} el - The trigger element
+ * @returns {HTMLElement} The trigger element or another element that has the trigger element as its children
+ */
 type ElFunction = ((e: any, el: HTMLElement) => HTMLElement);
 /**
  * Sets the function to create toggle elements
@@ -46,6 +53,12 @@ export declare class ToggleSetting extends BaseSetting {
      * @type {Element}
      */
     readonly element: Element;
+    /**
+     * The main element that the component is triggered from
+     * @readonly
+     * @type {Element}
+     */
+    readonly triggerElement: Element;
     /**
      * The flag that shows if the component is toggled
      * @type {boolean}
@@ -108,6 +121,12 @@ export declare class SliderSetting extends BaseSetting {
      * @type {Element}
      */
     readonly element: Element;
+    /**
+     * The main element that the component is triggered from
+     * @readonly
+     * @type {Element}
+     */
+    readonly triggerElement: Element;
     constructor(o: SliderSettingOpts);
 }
 /**

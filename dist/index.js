@@ -48,6 +48,13 @@ class BaseSetting {
         this.id = o.id;
     }
 }
+/**
+ * The function to create a toggle element
+ * @type {ElFunction}
+ * @param {any} e - The event object
+ * @param {HTMLElement} el - The main button element that would be toggled
+ * @returns {HTMLElement} The main button element or another element that has the main button element as its children
+ */
 var createToggleElement = (e, el) => el;
 /**
  * Sets the function to create toggle elements
@@ -71,6 +78,12 @@ class ToggleSetting extends BaseSetting {
      */
     element;
     /**
+     * The main element that the component is triggered from
+     * @readonly
+     * @type {Element}
+     */
+    triggerElement;
+    /**
      * The flag that shows if the component is toggled
      * @type {boolean}
      */
@@ -80,6 +93,7 @@ class ToggleSetting extends BaseSetting {
         this.isToggled = o.isToggled ?? false;
         const el = $$("button");
         el.addEventListener("pointerup", () => this.toggle());
+        this.triggerElement = el;
         this.element = createToggleElement(this, el);
         if (this.isToggled)
             this.element.classList.add(exports.activeName);
@@ -99,6 +113,13 @@ class ToggleSetting extends BaseSetting {
     }
 }
 exports.ToggleSetting = ToggleSetting;
+/**
+ * The function to create a slider element
+ * @type {ElFunction}
+ * @param {any} e - The event object
+ * @param {HTMLElement} el - The main slider that would be dragged
+ * @returns {HTMLElement} The main slider or an element that contains the main slider
+ */
 var createSliderElement = (e, el) => el;
 /**
  * Sets the function to create slider components
@@ -148,6 +169,12 @@ class SliderSetting extends BaseSetting {
      * @type {Element}
      */
     element;
+    /**
+     * The main element that the component is triggered from
+     * @readonly
+     * @type {Element}
+     */
+    triggerElement;
     constructor(o) {
         super(o);
         this.min = o.min || 0;
@@ -163,6 +190,7 @@ class SliderSetting extends BaseSetting {
                 step: this.step.toString(),
             },
         });
+        this.triggerElement = el;
         this.element = createSliderElement(this, el);
     }
 }

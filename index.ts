@@ -83,7 +83,23 @@ interface ToggleSettingOpts extends BaseSettingOpts {
   isToggled?: boolean;
 }
 
+/**
+ * Represents a function that is passed to the component setter's parameter
+ * @callback ElFunction
+ * @param {any} e - The event object
+ * @param {HTMLElement} el - The trigger element
+ * @returns {HTMLElement} The trigger element or another element that has the trigger element as its children
+ */
+
 type ElFunction = ((e: any, el: HTMLElement) => HTMLElement);
+
+/**
+ * The function to create a toggle element
+ * @type {ElFunction}
+ * @param {any} e - The event object
+ * @param {HTMLElement} el - The main button element that would be toggled
+ * @returns {HTMLElement} The main button element or another element that has the main button element as its children
+ */
 
 var createToggleElement: ElFunction = (e, el) => el;
 
@@ -112,6 +128,13 @@ export class ToggleSetting extends BaseSetting {
   readonly element: Element;
   
   /**
+   * The main element that the component is triggered from
+   * @readonly
+   * @type {Element}
+   */
+  readonly triggerElement: Element;
+  
+  /**
    * The flag that shows if the component is toggled
    * @type {boolean}
    */
@@ -124,6 +147,7 @@ export class ToggleSetting extends BaseSetting {
     const el = $$("button");
     el.addEventListener("pointerup", () => this.toggle());
     
+    this.triggerElement = el;
     this.element = createToggleElement(this, el);
     if(this.isToggled) this.element.classList.add(activeName);
     
@@ -150,6 +174,14 @@ interface SliderSettingOpts extends BaseSettingOpts {
   step?: number;
   defaultValue: number;
 }
+
+/**
+ * The function to create a slider element
+ * @type {ElFunction}
+ * @param {any} e - The event object
+ * @param {HTMLElement} el - The main slider that would be dragged
+ * @returns {HTMLElement} The main slider or an element that contains the main slider
+ */
 
 var createSliderElement: ElFunction = (e, el) => el;
 
@@ -208,6 +240,13 @@ export class SliderSetting extends BaseSetting {
    */
   readonly element: Element;
   
+  /**
+   * The main element that the component is triggered from
+   * @readonly
+   * @type {Element}
+   */
+  readonly triggerElement: Element;
+  
   constructor(o: SliderSettingOpts) {
     super(o);
     this.min = o.min || 0;
@@ -225,6 +264,7 @@ export class SliderSetting extends BaseSetting {
       },
     });
     
+    this.triggerElement = el;
     this.element = createSliderElement(this, el);
   }
 }

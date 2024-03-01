@@ -63,6 +63,12 @@ export class ToggleSetting extends BaseSetting {
      */
     __publicField(this, "element");
     /**
+     * The main element that the component is triggered from
+     * @readonly
+     * @type {Element}
+     */
+    __publicField(this, "triggerElement");
+    /**
      * The flag that shows if the component is toggled
      * @type {boolean}
      */
@@ -70,6 +76,7 @@ export class ToggleSetting extends BaseSetting {
     this.isToggled = (_a = o.isToggled) != null ? _a : false;
     const el = $$("button");
     el.addEventListener("pointerup", () => this.toggle());
+    this.triggerElement = el;
     this.element = createToggleElement(this, el);
     if (this.isToggled)
       this.element.classList.add(activeName);
@@ -124,6 +131,12 @@ export class SliderSetting extends BaseSetting {
      * @type {Element}
      */
     __publicField(this, "element");
+    /**
+     * The main element that the component is triggered from
+     * @readonly
+     * @type {Element}
+     */
+    __publicField(this, "triggerElement");
     this.min = o.min || 0;
     this.max = o.max;
     this.step = o.step || 1;
@@ -137,6 +150,7 @@ export class SliderSetting extends BaseSetting {
         step: this.step.toString()
       }
     });
+    this.triggerElement = el;
     this.element = createSliderElement(this, el);
   }
 }
